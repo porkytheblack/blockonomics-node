@@ -33,7 +33,7 @@ module.exports = {
 		return result;
 	},
 
-	getBalance: function(APIKEY) {
+	getAccountBalance: function(APIKEY) {
 		var url = config.config.address;
 		var result = sendRequest(url, "GET", {}, APIKEY);
 		return result;
@@ -49,8 +49,8 @@ module.exports = {
 	},
 
 	deleteAddress: function(APIKEY, addr) {
-		var url = config.config.address;
-		var result = sendRequest(url, "DELETE", {
+		var url = config.config.delete_address;
+		var result = sendRequest(url, "POST", {
 			"addr": addr
 		}, APIKEY);
 		return result;
@@ -60,8 +60,10 @@ module.exports = {
 		var url = config.config.newAddress;
 		if (reset == 1)
 			url = url + "reset=1";
-		if (!match_account)
-			url = url + "match_account=" + match_account;
+
+		if (match_account)
+			url = ( url + ( ( reset == 1 ) ? "&": "?" ) ) + "match_account=" + match_account;
+
 		var result = sendRequest(url, "POST", {}, APIKEY);
 		return result;
 	}

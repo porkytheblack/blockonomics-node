@@ -33,18 +33,28 @@ app.get('/api/tx', function(req, res) {
 });
 
 app.get('/api/address/:apikey', function(req, res) {
-	var response = blockonomics.getBalance(req.params.apikey).then(function(response) {
+	var response = blockonomics.getAccountBalance(req.params.apikey).then(function(response) {
 		res.send(response);
 	});
-
 });
 
 app.get('/api/new_address/:apikey', function(req, res) {
 	var response = blockonomics.getNewAddress(req.params.apikey, req.query.reset, req.query.match_account).then(function(response) {
 		res.send(response);
-		console.log(response)
 	});
 
+});
+
+app.get('/api/insert_address/:apikey', function(req, res) {
+	var response = blockonomics.insertAddress(req.params.apikey, req.query.address, req.query.tag).then(function(response) {
+		res.send(response);
+	});
+});
+
+app.get('/api/delete_address/:apiKey', function(req, res) {
+	var response = blockonomics.deleteAddress(req.params.apiKey, req.query.address).then(function(response) {
+		res.send(response);
+	});
 });
 
 var server = app.listen(port, function() {
