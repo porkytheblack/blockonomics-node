@@ -98,14 +98,6 @@ function sendRequest(fullpath, method, querystring, APIKEY) {
 				.end(function(response) {
 					resolve(response.body);
 				});
-		} else if (method == "DELETE") {
-			unirest.delete(options.url)
-				.headers(options.headers)
-				.send(options.qs)
-				.end(function(response) {
-					resolve(response.body);
-				});
 		}
-	});
-
+  });
 }
