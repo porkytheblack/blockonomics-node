@@ -89,14 +89,14 @@ function sendRequest(fullpath, method, querystring, APIKEY) {
 				.headers(options.headers)
 				.send(options.qs)
 				.end(function(response) {
-					resolve(response.body);
+					resolve(response);
 				});
 		} else if (method == "POST") {
 			unirest.post(options.url)
 				.headers(options.headers)
 				.send(options.qs)
 				.end(function(response) {
-					resolve(response.body);
+					resolve(response);
 				});
 		}
   });

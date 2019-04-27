@@ -19,6 +19,19 @@ var test_addr1 = '1LuckyG4tMMZf64j6ea7JhCz7sDpk6vdcS';
 var test_addr2 = '14cZMQk89mRYQkDEj8Rn25AnGoBi5H6uer';
 var test_tag = 'tag123';
 
+// you can use a global variable if tests span many files
+let currentResponse = null;
+
+afterEach(function() {
+  const errorBody = currentResponse && currentResponse.body;
+
+  if (this.currentTest.state === 'failed' && errorBody) {
+    console.log(errorBody);
+  }
+
+  currentResponse = null;
+});
+
 // UNIT test begin
 describe("Get Balance", function(){
   it("Should return balance for given address.", function(done){
@@ -135,13 +148,8 @@ describe("New Address", function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
+      currentResponse = res;
       res.status.should.equal(200);
-      console.log(res.body);
-
-      if ( 'status' in res.body ) {
-        res.body.message.should.equal('');
-        res.body['status'].should.equal(200);
-      }
       done();
     });
   });
