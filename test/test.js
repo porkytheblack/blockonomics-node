@@ -32,6 +32,7 @@ afterEach(function() {
   currentResponse = null;
 });
 
+/*
 // UNIT test begin
 describe("Get Balance", function(){
   it("Should return balance for given address.", function(done){
@@ -139,6 +140,7 @@ describe("Get Account Balance", function(){
     });
   });
 });
+*/
 
 describe("New Address", function(){
   it("Should create new address", function(done){
