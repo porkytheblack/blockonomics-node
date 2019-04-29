@@ -13,7 +13,7 @@ var tx_vout = '3M3G7y7djcxTjqeoe6M3shBgBqEEg344uj';
 var tx_vin = '19qwC75P8yTjhLC6iKzprKjBPo7vX1pZba';
 
 //Test account 
-var test_api_key = 'AmJ661hScLjQRhzzBYpsxoE8GNJgQlMAaBr8mccfB5Y';
+var test_api_key = '1AmJ661hScLjQRhzzBYpsxoE8GNJgQlMAaBr8mccfB5Y';
 var test_xpub = 'xpub6Ccyeb37i7pCfKmzv9rk2wWzmzK2D9ASZXYh2GHGcFU8N2CVP9RTPMt9FxPxaXykg3BJhiuJLSywY9P8SRgNcRP6dRuhmyTuazEmv4REGaj';
 var test_addr1 = '1LuckyG4tMMZf64j6ea7JhCz7sDpk6vdcS';
 var test_addr2 = '14cZMQk89mRYQkDEj8Rn25AnGoBi5H6uer';
@@ -41,6 +41,7 @@ describe("Get Balance", function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
+      currentResponse = res;
       res.status.should.equal(200);
       console.log(res.body);
       res.body.response[0].addr.should.equal(sample_addr);
@@ -60,6 +61,7 @@ describe("Get Transaction History", function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
+      currentResponse = res;
       res.status.should.equal(200);
       console.log(res.body);
       res.body.should.have.property('pending');
@@ -77,6 +79,7 @@ describe("Get Transactoin Detatils", function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
+      currentResponse = res;
       res.status.should.equal(200);
       console.log(res.body);
       res.body.should.have.property('status');
@@ -101,6 +104,7 @@ describe("Delete Address", function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
+      currentResponse = res;
       res.status.should.equal(200);
       console.log(res.body);
       done();
@@ -117,6 +121,7 @@ describe("Add Address", function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
+      currentResponse = res;
       res.status.should.equal(200);
       console.log(res.body);
       done();
@@ -133,6 +138,7 @@ describe("Get Account Balance", function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
+      currentResponse = res;
       res.status.should.equal(200);
       console.log(res.body);
       done();
