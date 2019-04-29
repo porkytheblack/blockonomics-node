@@ -3,8 +3,11 @@
   "version": "1.0.1",
   "description": "nodejs API for blockonomics",
   "scripts": {
-    "test": "node app.js",
+    "test": "mocha --timeout 10000",
     "start": "node app.js"
+  },
+  "bin": {
+    "blockonomics-run-tests": "./run-tests.js"
   },
   "keywords": [
     "blockonomics",
