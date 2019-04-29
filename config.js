@@ -7,6 +7,7 @@ exports.config = {
 	transactionDetail: '/api/tx_detail',
 	transactionReceipt: '/api/tx',
 	address: '/api/address',
+	delete_address: '/api/delete_address',
 	newAddress: '/api/new_address',
 	callback: '/api/callback_url',
 	payment: '/payment/'

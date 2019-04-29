@@ -1,6 +1,6 @@
 {
   "name": "blockonomics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "nodejs API for blockonomics",
   "scripts": {
     "test": "node app.js",
@@ -28,7 +28,12 @@
   "dependencies": {
     "express": "^4.13.3",
     "promise": "^7.0.4",
-    "unirest": "^0.4.2"
+    "unirest": "^0.6.0"
   },
-  "license": "Apache License"
+  "license": "Apache License",
+  "devDependencies": {
+    "mocha": "^6.1.3",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
+  }
 }
