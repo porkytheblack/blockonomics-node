@@ -105,7 +105,6 @@ describe("Delete Address", function(){
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
-      console.log(res.body);
       done();
     });
   });
@@ -118,7 +117,6 @@ describe("Add Address", function(){
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
-      console.log(res.body);
       done();
     });
   });
