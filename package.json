@@ -1,6 +1,6 @@
 {
   "name": "blockonomics",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "nodejs API for blockonomics",
   "scripts": {
     "test": "mocha --timeout 10000"
@@ -15,17 +15,17 @@
     "bitcoin"
   ],
   "author": {
-    "name": "sgsshankar",
-    "email": "sgsshankarnarayanan@gmail.com",
-    "url": "http://github.com/sgsshankar"
+    "name": "blockonomics",
+    "email": "administrator@blockonomics.co",
+    "url": "http://github.com/blockonomics"
   },
   "main": "blockonomics.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sgsshankar/blockonomics-node.git"
+    "url": "https://github.com/blockonomics/blockonomics-node"
   },
   "bugs": {
-    "url": "https://github.com/sgsshankar/blockonomics-node/issues"
+    "url": "https://github.com/blockonomics/blockonomics-node/issues"
   },
   "dependencies": {
     "express": "^4.13.3",
