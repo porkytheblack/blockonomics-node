@@ -13,7 +13,7 @@ var tx_vout = '3M3G7y7djcxTjqeoe6M3shBgBqEEg344uj';
 var tx_vin = '19qwC75P8yTjhLC6iKzprKjBPo7vX1pZba';
 
 //Test account 
-var test_api_key = '1AmJ661hScLjQRhzzBYpsxoE8GNJgQlMAaBr8mccfB5Y';
+var test_api_key = 'AmJ661hScLjQRhzzBYpsxoE8GNJgQlMAaBr8mccfB5Y';
 var test_xpub = 'xpub6Ccyeb37i7pCfKmzv9rk2wWzmzK2D9ASZXYh2GHGcFU8N2CVP9RTPMt9FxPxaXykg3BJhiuJLSywY9P8SRgNcRP6dRuhmyTuazEmv4REGaj';
 var test_addr1 = '1LuckyG4tMMZf64j6ea7JhCz7sDpk6vdcS';
 var test_addr2 = '14cZMQk89mRYQkDEj8Rn25AnGoBi5H6uer';
@@ -32,14 +32,24 @@ afterEach(function() {
   currentResponse = null;
 });
 
+var blockonomics = require('../blockonomics');
+
+var processResponse = function(response){
+  if(response.status == 401) {
+    response.body = { 
+      "status":response.status, 
+      "message" : response.statusMessage 
+    };
+  }
+
+  return response;
+};
+
 // UNIT test begin
 describe("Get Balance", function(){
   it("Should return balance for given address.", function(done){
-    server
-    .get("/api/balance/"+sample_addr)
-    .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
-    .end(function(err,res){
+    var response = blockonomics.getBalance(sample_addr).then(function(response) {
+      res = processResponse(response);
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
@@ -54,12 +64,8 @@ describe("Get Balance", function(){
 
 describe("Get Transaction History", function(){
   it("Should return transaction history of given address.", function(done){
-    this.timeout(10000);
-    server
-    .get("/api/searchhistory/"+sample_addr)
-    .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
-    .end(function(err,res){
+	  var response = blockonomics.getHistory(sample_addr).then(function(response) {
+      res = processResponse(response);
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
@@ -73,11 +79,8 @@ describe("Get Transaction History", function(){
 
 describe("Get Transactoin Detatils", function(){
   it("Should return transaction details for given tx id", function(done){
-    server
-    .get("/api/tx_detail?txid="+sample_txid)
-    .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
-    .end(function(err,res){
+	  var response = blockonomics.getTransactionDetail(sample_txid).then(function(response) {
+      res = processResponse(response);
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
@@ -97,16 +100,11 @@ describe("Get Transactoin Detatils", function(){
 
 describe("Delete Address", function(){
   it("Should delete the given address", function(done){
-    this.timeout(10000);
-    server
-    .get("/api/delete_address/"+test_api_key+"?address="+test_addr1)
-    .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
-    .end(function(err,res){
+	  var response = blockonomics.deleteAddress(test_api_key, test_addr1).then(function(response) {
+      res = processResponse(response);
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
-      console.log(res.body);
       done();
     });
   });
@@ -114,16 +112,11 @@ describe("Delete Address", function(){
 
 describe("Add Address", function(){
   it("Should add given address to account", function(done){
-    this.timeout(10000);
-    server
-    .get("/api/insert_address/"+test_api_key+"?address="+test_addr1+"&tag="+test_tag)
-    .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
-    .end(function(err,res){
+	  var response = blockonomics.insertAddress(test_api_key, test_addr1, test_tag).then(function(response) {
+      res = processResponse(response);
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
-      console.log(res.body);
       done();
     });
   });
@@ -131,12 +124,8 @@ describe("Add Address", function(){
 
 describe("Get Account Balance", function(){
   it("Should return account balance", function(done){
-    this.timeout(10000);
-    server
-    .get("/api/address/"+test_api_key)
-    .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
-    .end(function(err,res){
+	  var response = blockonomics.getAccountBalance(test_api_key).then(function(response) {
+      res = processResponse(response);
       // HTTP status should be 200
       currentResponse = res;
       res.status.should.equal(200);
@@ -148,13 +137,11 @@ describe("Get Account Balance", function(){
 
 describe("New Address", function(){
   it("Should create new address", function(done){
-    server
-    .get("/api/new_address/"+test_api_key)
-    .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
-    .end(function(err,res){
+	  var response = blockonomics.getNewAddress(test_api_key, "", "").then(function(response) {
+      res = processResponse(response);
       // HTTP status should be 200
       currentResponse = res;
+      console.log(res.body);
       res.status.should.equal(200);
       done();
     });

@@ -36,9 +36,15 @@ getNewAddress(APIKEY, reset, match_account)
 
 ### Development
 
-Feel free to fork from [blockonomics-node](https://github.com/sgsshankar/blockonomics-node/)
+Feel free to fork from [blockonomics-node](https://github.com/blockonomics/blockonomics-node)
 
 ### Issues
 
-https://github.com/sgsshankar/blockonomics-node/issues
+https://github.com/blockonomics/blockonomics-node/issues
+
+### Running test cases
+##### Global Package
+$ blockonomics-run-tests
+##### Local cloned repo 
+$ npm test
 
