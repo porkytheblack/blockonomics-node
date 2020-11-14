@@ -35,6 +35,7 @@ afterEach(function() {
 var blockonomics = require('../blockonomics');
 
 var processResponse = function(response){
+	//if response is unauthorized 401= unauthorised
   if(response.status == 401) {
     response.body = { 
       "status":response.status, 
@@ -45,7 +46,7 @@ var processResponse = function(response){
   return response;
 };
 
-// UNIT test begin
+// UNIT test begin test structure
 describe("Get Balance", function(){
   it("Should return balance for given address.", function(done){
     var response = blockonomics.getBalance(sample_addr).then(function(response) {
