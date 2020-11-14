@@ -12,7 +12,7 @@ module.exports = {
 		});
 		return result;
 	},
-
+	// https://www.blockonomics.co/api/searchhistory
 	getHistory: function(addr) {
 		var url = config.config.history;
 		var result = sendRequest(url, 'POST', {
